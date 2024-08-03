@@ -1,11 +1,11 @@
 # Ignore everything
-*
+#*
 
 # But not these files...
-!.gitignore
-!sway/*
-!i3status-rust/*
-!alacritty/*
+#!.gitignore
+#!sway/*
+#!i3status-rust/*
+#!alacritty/*
 
 # ...even if they are in subdirectories
-!*/
+#!*/
