@@ -57,7 +57,7 @@ workspace 8 output $output-secondary
 
 ### Idle configuration
 exec swayidle -w \
-     timeout 60 idle_power_management.sh \
+     timeout 600 idle_power_management.sh \
      before-sleep 'swaylock -f --ignore-empty-password -c 000000'
 
 ### Input configuration
