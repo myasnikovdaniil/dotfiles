@@ -101,7 +101,7 @@ exec swayidle -w \
     bindcode 150 exec idle_power_management.sh
 #    bindsym XF86Battery
 #    bindsym XF86WebCam
-#    bindsym XF86Display
+    bindcode 235 exec toggle_display.sh
     bindsym Print exec grim -g "`slurp`" - | wl-copy
 # Touchpad
     bindsym XF86TouchpadToggle input "2:7:SynPS/2_Synaptics_TouchPad" events toggle disabled enabled
