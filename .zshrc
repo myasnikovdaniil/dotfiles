@@ -84,6 +84,8 @@ source $ZSH/oh-my-zsh.sh
 export PATH="/home/daniil/bin:/home/daniil/go/bin:$PATH"
 export EDITOR="/usr/bin/vim"
 export LESS="-X -F $LESS"
+export PAGER="less --mouse -RF"
+export BAT_PAGER="less --mouse -R"
 
 # You may need to manually set your language environment
 # export LANG=en_US.UTF-8
@@ -111,13 +113,12 @@ alias k='kubectl'
 alias ll='ls -lah'
 
 lazyload yc -- 'source "/home/daniil/yandex-cloud/completion.zsh.inc"'
-
+lazyload talm -- 'source <(talm completion zsh)'
 # The next line updates PATH for Yandex Cloud CLI.
 if [ -f '/home/daniil/yandex-cloud/path.bash.inc' ]; then source '/home/daniil/yandex-cloud/path.bash.inc'; fi
 
 # The next line enables shell command completion for yc.
 #if [ -f '/home/daniil/yandex-cloud/completion.zsh.inc' ]; then source '/home/daniil/yandex-cloud/completion.zsh.inc'; fi
-
 
 autoload -U +X bashcompinit && bashcompinit
 complete -o nospace -C /usr/local/bin/vault vault

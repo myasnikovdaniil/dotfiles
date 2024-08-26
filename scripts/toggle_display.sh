@@ -1,6 +1,9 @@
 #!/bin/bash
 
-MONITOR="HDMI-A-1"         # Название второго монитора
+#set -x
+#set -e
+
+MONITOR=$(swaymsg -t get_outputs | yq -r '.[] | select(.name != "LVDS-1") | .name ') # Название второго монитора
 PRIMARY_MONITOR="LVDS-1"   # Название основного монитора
 
 # Доступные позиции

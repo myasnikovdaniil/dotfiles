@@ -1,0 +1,15 @@
+#!/bin/bash
+
+case $1 in
+    join)
+        sudo zerotier-cli join zt_network_id
+        sudo zerotier-cli set zt_network_id allowDNS=true > /dev/null
+        sudo zerotier-cli set zt_network_id allowDefault=true > /dev/null
+        ;;
+    leave)
+        sudo zerotier-cli leave zt_network_id
+        ;;
+    *)
+        sudo zerotier-cli $@
+        ;;
+esac

@@ -15,7 +15,7 @@ set $down j
 set $up k
 set $right l
 # Your preferred terminal emulator
-set $term alacritty
+set $term run-alacritty-cwd.sh
 # Your preferred application launcher
 # Note: pass the final command to swaymsg so that the resulting window can be opened
 # on the original workspace that the command was run on.
@@ -37,23 +37,25 @@ output * bg /home/daniil/pictures/anime-girl-balcony-daily-routine-moments-6p-13
 #
 # You can get the names of your outputs by running: swaymsg -t get_outputs
 
+
+# Define outputs
+set $output_primary LVDS-1
+set $output_secondary HDMI-A-1 HDMI-A-2
+
 output LVDS-1 resolution 1366x768 position "0, 0"
 
 output HDMI-A-1 resolution 1920x1080 position "-277, -1080"
-
-# Define outputs
-set $output-primary LVDS-1
-set $output-secondary HDMI-A-1
+output HDMI-A-2 resolution 1920x1080 position "-277, -1080"
 
 # workspace to displays
-workspace 1 output $output-primary
-workspace 2 output $output-primary
-workspace 3 output $output-primary
-workspace 4 output $output-primary
-workspace 5 output $output-secondary
-workspace 6 output $output-secondary
-workspace 7 output $output-secondary
-workspace 8 output $output-secondary
+workspace 1 output $output_primary
+workspace 2 output $output_primary
+workspace 3 output $output_primary
+workspace 4 output $output_primary
+workspace 5 output $output_secondary
+workspace 6 output $output_secondary
+workspace 7 output $output_secondary
+workspace 8 output $output_secondary
 
 ### Idle configuration
 exec swayidle -w \
@@ -259,8 +261,14 @@ mode "resize" {
 bindsym --to-code $mod+r mode "resize"
 font pango:JetBrains Mono, Noto Font 9
 
-titlebar_padding 3 1
-smart_borders on
+#gaps inner 10
+#smart_gaps off
+
+#titlebar_padding 3 1
+smart_borders off
+default_border pixel 2
+hide_edge_borders none
+titlebar_border_thickness 0
 
 #
 # Status Bar:
