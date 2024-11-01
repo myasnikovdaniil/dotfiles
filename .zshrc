@@ -75,6 +75,8 @@ ZSH_CUSTOM=$HOME/.zsh_custom
 # Add wisely, as too many plugins slow down shell startup.
 plugins=(git zsh-lazyload)
 
+fpath+=/home/linuxbrew/.linuxbrew/share/zsh/site-functions
+
 source $ZSH/oh-my-zsh.sh
 
 # User configuration
@@ -86,6 +88,8 @@ export EDITOR="/usr/bin/vim"
 export LESS="-X -F $LESS"
 export PAGER="less --mouse -RF"
 export BAT_PAGER="less --mouse -R"
+export WORDCHARS='*?_-.[]~=&;!#$%^(){}<>'
+#export KUBECONFIG=~/.kube/config:~/tmp/cozystack-cluster/kubeconfig
 
 # You may need to manually set your language environment
 # export LANG=en_US.UTF-8
@@ -113,22 +117,23 @@ alias k='kubectl'
 alias ll='ls -lah'
 
 lazyload yc -- 'source "/home/daniil/yandex-cloud/completion.zsh.inc"'
-lazyload talm -- 'source <(talm completion zsh)'
-# The next line updates PATH for Yandex Cloud CLI.
-if [ -f '/home/daniil/yandex-cloud/path.bash.inc' ]; then source '/home/daniil/yandex-cloud/path.bash.inc'; fi
-
-# The next line enables shell command completion for yc.
-#if [ -f '/home/daniil/yandex-cloud/completion.zsh.inc' ]; then source '/home/daniil/yandex-cloud/completion.zsh.inc'; fi
 
 autoload -U +X bashcompinit && bashcompinit
 complete -o nospace -C /usr/local/bin/vault vault
 
-# Set up fzf key bindings and fuzzy completion
 source <(fzf --zsh)
 source <(helm completion zsh)
+source <(talm completion zsh)
 source <(helmfile completion zsh)
 source <(oc completion zsh)
 source <(talosctl completion zsh)
-complete -o nospace -C /usr/bin/terragrunt terragrunt
+
+# The next line updates PATH for Yandex Cloud CLI.
+if [ -f '/home/daniil/yandex-cloud/path.bash.inc' ]; then source '/home/daniil/yandex-cloud/path.bash.inc'; fi
+
+# The next line enables shell command completion for yc.
+if [ -f '/home/daniil/yandex-cloud/completion.zsh.inc' ]; then source '/home/daniil/yandex-cloud/completion.zsh.inc'; fi
 
 #zprof
+
+eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"

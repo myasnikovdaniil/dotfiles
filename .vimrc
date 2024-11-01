@@ -143,7 +143,7 @@ if $COLORTERM == 'gnome-terminal'
 endif
 
 try
-    colorscheme slate
+    colorscheme habamax
 catch
 endtry
 
@@ -299,7 +299,7 @@ fun! CleanExtraSpaces()
 endfun
 
 if has("autocmd")
-    autocmd BufWritePre *.txt,*.js,*.py,*.wiki,*.sh,*.coffee :call CleanExtraSpaces()
+    autocmd BufWritePre *.yml,*.yaml,*.gotmpl,*.txt,*.js,*.py,*.wiki,*.sh,*.coffee :call CleanExtraSpaces()
 endif
 
 
@@ -388,11 +388,15 @@ endfunction
 """
 """ Plugins
 """
+
+let g:polyglot_disabled = ['golang']
+
 call plug#begin()
 
 " List your plugins here
 Plug 'sheerun/vim-polyglot'
 Plug 'jasonccox/vim-wayland-clipboard'
+Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
 
 call plug#end()
 
@@ -401,6 +405,6 @@ call plug#end()
 """
 augroup yamlgotmpl_ft
   au!
-  autocmd BufNewFile,BufRead *.yaml.gotmpl   set syntax=helm
-  autocmd BufNewFile,BufRead *.yml.gotmpl   set syntax=helm
+  autocmd BufNewFile,BufRead *.yaml.gotmpl   set syntax=helm tabstop=2 softtabstop=2 shiftwidth=2
+  autocmd BufNewFile,BufRead *.yml.gotmpl   set syntax=helm tabstop=2 softtabstop=2 shiftwidth=2
 augroup END
