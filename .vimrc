@@ -228,6 +228,8 @@ map <leader>ba :bufdo bd<cr>
 
 map <leader>l :bnext<cr>
 map <leader>h :bprevious<cr>
+map <leader>k :Buffers<cr>
+map <leader>j :Files<cr>
 
 " Useful mappings for managing tabs
 map <leader>tn :tabnew<cr>
@@ -391,12 +393,20 @@ endfunction
 
 let g:polyglot_disabled = ['golang']
 
+let g:ollama_host = 'http://192.168.0.2:11434'
+let g:ollama_model = 'deepseek-coder-v2:16b'
+let g:ollama_chat_model = 'phi3:mini'
+let g:ollama_logfile = '/tmp/vim-ollama/ollama.log'
+let g:ollama_debug = 4
+
 call plug#begin()
 
 " List your plugins here
 Plug 'sheerun/vim-polyglot'
 Plug 'jasonccox/vim-wayland-clipboard'
 Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
+Plug 'junegunn/fzf.vim'
+" Plug 'gergap/vim-ollama'
 
 call plug#end()
 

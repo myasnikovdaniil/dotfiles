@@ -114,6 +114,7 @@ export WORDCHARS='*?_-.[]~=&;!#$%^(){}<>'
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 alias tfswitch='tfswitch -m https://hashicorp-releases.yandexcloud.net/terraform/'
 alias k='kubectl'
+alias hf='helmfile'
 alias ll='ls -lah'
 
 lazyload yc -- 'source "/home/daniil/yandex-cloud/completion.zsh.inc"'
@@ -137,3 +138,12 @@ if [ -f '/home/daniil/yandex-cloud/completion.zsh.inc' ]; then source '/home/dan
 #zprof
 
 eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
+
+function y() {
+	local tmp="$(mktemp -t "yazi-cwd.XXXXXX")" cwd
+	yazi "$@" --cwd-file="$tmp"
+	if cwd="$(command cat -- "$tmp")" && [ -n "$cwd" ] && [ "$cwd" != "$PWD" ]; then
+		builtin cd -- "$cwd"
+	fi
+	rm -f -- "$tmp"
+}
